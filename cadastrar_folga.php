@@ -27,83 +27,64 @@
 
         <div class="container">
             <div class="row">
+                <h4>Cadastro de Folga por Colaborador</h4>
 
+                <?php include 'conn.php'; ?>
 
-                <!-- Tela de Cadastro -->
-                <form method="post" action="">  
-                    <div class="col">
-                        <h4>Cadastro de Folga por Colaborador</h4>
-
-                        <div class="row">
-                            <div class="col-8">
-                                <?php
-                                include 'conn.php';
-                                $query_select_tipo = "select id, descricao from Auditor;";
-                                $select_tipo = mysqli_query($connect, $query_select_tipo) or die(msql_error());
-                                ?>
-                                <label for='country'>Colaborador</label> <br> 
-                                <select class='custom-select w-100' name='nome' required>
-                                    <option value=''>Escolha</option> 
-                                    <?php
-                                    while ($row_tipo = mysqli_fetch_assoc($select_tipo)) {
-                                        echo" <option value='$row_tipo[id]'>$row_tipo[descricao]</option> ";
-                                    }
-                                    ?>   
-                                </select>
-                                <button class="btn btn-xs" type="submit">Selecionar</button>
-                            </div>
+                <div class="col-sm-12">
+                    <?php
+                    $id = $_POST[nome]; //recebe id do colaborador
+                    $query_select_auditor = "select a.id, a.descricao as nome, a.telefone, t.descricao as contrato from Auditor a inner join Tipo t on t.id = a.tipo_id where a.id = $id;";
+                    $select_auditor = mysqli_query($connect, $query_select_auditor) or die(msql_error());
+                    $auditor = mysqli_fetch_assoc($select_auditor);
+                    ?>
+                    <div class="row">
+                        <div class="col">
+                            <i class="material-icons">person</i> <!-- ICONE--> 
+                            <b><?php echo $auditor['nome'] . "</b> (" . $auditor['contrato']; ?>)
+                        </div>       
+                        <div class="col">
+                            Telefone: 
+                            <?php echo $auditor['telefone']; ?>
+                        </div>
+                        <div class="col">
+                            <form method="post" action="cadastrando_folga.php"> 
+                                <input type="hidden" name="id_auditor" value="<?php echo $auditor['id']; ?>">
+                                <input type="date" name="data">
+                                <button class="btn btn-primary" type="submit">Cadastrar</button> 
                             </form>
-
-                            <div class="col col-lg-4">
-                                <?php
-                                $id = $_POST['nome']; //recebe id do colaborador
-                                $query_select_auditor = "select a.id, a.descricao as nome, a.telefone, t.descricao as contrato from Auditor a inner join Tipo t on t.id = a.tipo_id where a.id = $id;";
-                                $select_auditor = mysqli_query($connect, $query_select_auditor) or die(msql_error());
-                                $auditor = mysqli_fetch_assoc($select_auditor);
-                                ?>
-                                <div class="row">
-                                    <div class="col">
-                                        <i class="material-icons">person</i> <!-- ICONE--> 
-                                        <b><?php echo $auditor['nome'] . "</b> (" . $auditor['contrato']; ?>)
-                                    </div>       
-                                    <div class="col">
-                                        Telefone: 
-                                        <?php echo $auditor['telefone']; ?>
-                                    </div>
-
-                                </div>
-
-                                <br>
-
-                                <form method="post" action="cadastrando_folga.php">  
-                                    <div class="col">
-                                        <input type="hidden" name="id_auditor" value="<?php echo $auditor['id']; ?>">
-                                        <input type="date" name="data">
-                                        <button class="btn btn-primary" type="submit">Cadastrar</button> 
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row-4">
-                                <table class="table">
-                                    <?php
-                                    include './conn.php';
-                                    $qr_folga = "select date_format(folga, '%d/%m/%y') as data, dayname(folga) as dia_semana from Folga where Auditor_id =" . $auditor['id'] . " order by folga desc;";
-                                    $select_folga = mysqli_query($connect, $qr_folga) or die(msql_error());
-                                    while ($folga = mysqli_fetch_assoc($select_folga)) {
-                                        echo "<tr>
-                                          <td>";
-                                        echo $folga['data'];
-                                        echo " - ";
-                                        echo $folga['dia_semana'];
-                                        echo " </td>
-                                           </tr>";
-                                    }
-                                    ?>  
-                                </table>
-                            </div>
-                        </div>   
+                        </div>
                     </div>
+                </div>
             </div>
-        </div>
-    </body>    
+            <br><br>
+            <div class="row">
+                <div class="col-sm-3">
+                    <table class="table table-condensed table-responsive table-hover table-bordered table-striped">
+                        <thead>
+                        <th>Dias de folga</th>
+                        </thead>
+                        <?php
+                        include './conn.php';
+                        $qr_folga = "select date_format(folga, '%d/%m/%y') as data, dayname(folga) as dia_semana from Folga where Auditor_id =" . $auditor['id'] . " order by folga desc;";
+                        $select_folga = mysqli_query($connect, $qr_folga) or die(msql_error());
+                        while ($folga = mysqli_fetch_assoc($select_folga)) {
+                            echo "<tr><td>";
+                            echo $folga['data'];
+                            echo " - ";
+                            echo $folga['dia_semana'];
+                            echo "<a href = cadastro.php?id=".$auditor['id'].">  (excluir)</a>";
+                            echo " </td></tr>";
+                            
+                        }
+                        ?>  
+                    </table>
+                </div>
+                <div class="col-sm-8">
+                    <?php include './calendario_por_data.php'; ?>
+                </div>  
+            </div>
+        </div>   
+    </div>
+</body>    
 </html>

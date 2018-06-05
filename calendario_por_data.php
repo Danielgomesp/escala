@@ -1,12 +1,11 @@
 <?php
 
-
 function MostreSemanas()
 {
 	$semanas = "DSTQQSS";
 
 	for( $i = 0; $i < 7; $i++ )
-	 echo "<td>".$semanas{$i}."</td>";
+	 echo "<th>".$semanas{$i}."</th>";
 
 }
 
@@ -35,7 +34,7 @@ function MostreCalendario( $mes  )
 
 	$diasemana = jddayofweek( cal_to_jd(CAL_GREGORIAN, $mes,"01",date('Y')) , 0 );	// fun��o que descobre o dia da semana
 
-	echo "<table border = 0 cellspacing = '0'>";
+	echo "<table class='table table-condensed table-responsive table-hover table-bordered'>";
 	
 	 echo "<tr class = 'linha_semanas'>";
 	   MostreSemanas();	// fun��o que mostra as semanas aqui
@@ -85,8 +84,21 @@ function MostreCalendario( $mes  )
 			 }
 			 else
 			 {
-			  	// echo "<input type = 'button' id = 'dia_comum' name = 'dia".($diacorrente+1)."'  value = '".++$diacorrente."' onclick = \"acao(this.value)\">";
-				   echo "<a href = ".$_SERVER["PHP_SELF"]."?dia=".($diacorrente+1).">".++$diacorrente . "</a>";
+                            // echo "<input type = 'button' id = 'dia_comum' name = 'dia".($diacorrente+1)."'  value = '".++$diacorrente."' onclick = \"acao(this.value)\">";
+
+                            include './conn.php';
+                            $qr_folga = "select count(folga) as total from Folga where folga = '".date('Y')."-$mes-".($diacorrente+1)."';";
+                            $select_folga = mysqli_query($connect, $qr_folga) or die(msql_error());
+                            $folga = mysqli_fetch_array($select_folga);
+
+//                           
+
+                            echo ++$diacorrente; //Restante dos dias aparecem normais.
+                            if ($folga['total'] > 0){
+                            echo "  (<a href = ".$_SERVER["PHP_SELF"]."?dia=".($diacorrente)."><font color='red'>".$folga['total']."</font></a>)";    
+                            }else{
+                            
+                            }       
 			 }
 		      }
 		      else
@@ -134,19 +146,22 @@ function MostreCalendarioCompleto()
  <head>
 
   <script src = "funcoes.js"></script>
-
-  <link href = "css/style001.css" rel=stylesheet type=text/css>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calendário</title>    
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
   <?php  /* include("info.php"); */ ?>
 
  </head>
+              
  <body>
 
 
 		<?php
-	
-		  MostreCalendario(date('02'));
-
+		  MostreCalendario(date('m'));
+                  
 		?>
 
 

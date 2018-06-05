@@ -24,7 +24,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               <li><a href="./cadastrar_agendamento_data.php">Agendamentos</a></li>
-              <li><a href="./cadastrar_folga.php">Folgas</a></li>
+              <li><a href="./folga.php">Folgas</a></li>
               <li><a href="./cadastrar_colaborador.php">Colaboradores</a></li>
               <li><a href="./cadastrar_tipo.php">Tipo de Contrato</a></li>
               <li><a href="./cadastrar_posto.php">Postos</a></li>
