@@ -9,12 +9,12 @@
                 <table class=" table-striped table table-bordered table-responsive table-condensed table-hover">
                     <?php
                     include './conn.php';
-                    $query_agenda = "select date_format(data, '%d/%m/%y') as datam, data  from Agenda group by data order by data desc limit 5;";
+                    $query_agenda = "select dayname(data) as dia_da_semana, date_format(data, '%d/%m/%y') as datam, data  from Agenda group by data order by data limit 31;";
                     $select_agenda = mysqli_query($connect, $query_agenda) or die(msql_error());                    
                     while ($row_agenda = mysqli_fetch_assoc($select_agenda)){
                         echo "<tr>";
                         echo "<td>";
-                        echo "<b>$row_agenda[datam]</b>";
+                        echo "<b>$row_agenda[datam]</b> - (".$row_agenda[dia_da_semana].")";
                         echo "</td>";
                         echo "<td></td>";
                         echo "<td></td>";

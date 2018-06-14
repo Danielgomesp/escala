@@ -34,7 +34,7 @@ function MostreCalendario( $mes  )
 
 	$diasemana = jddayofweek( cal_to_jd(CAL_GREGORIAN, $mes,"01",date('Y')) , 0 );	// fun��o que descobre o dia da semana
 
-	echo "<table border = 0 cellspacing = '10'>";
+	echo "<table class='table table-condensed table-responsive table-hover table-bordered'>";
 	
 	 echo "<tr class = 'linha_semanas'>";
 	   MostreSemanas();	// fun��o que mostra as semanas aqui
@@ -87,7 +87,7 @@ function MostreCalendario( $mes  )
 			  	// echo "<input type = 'button' id = 'dia_comum' name = 'dia".($diacorrente+1)."'  value = '".++$diacorrente."' onclick = \"acao(this.value)\">";
                                
                                     include './conn.php';
-                                    $qr_folga = "select date_format(folga, '%e') as data from Folga where Auditor_id =1;";
+                                    $qr_folga = "select date_format(folga, '%e') as data from Folga where Auditor_id =19;";
                                     $select_folga = mysqli_query($connect, $qr_folga) or die(msql_error());
                                     while ($folga = mysqli_fetch_array($select_folga)) {
                                         $array[] = $folga['data'];

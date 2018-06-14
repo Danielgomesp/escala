@@ -5,18 +5,15 @@ $nome = filter_input(INPUT_POST, nome);
 $email = filter_input(INPUT_POST, email);
 $telefone = filter_input(INPUT_POST, telefone);
 $tipo = filter_input(INPUT_POST, tipo);
+$grupo = filter_input(INPUT_POST, grupo);
 $data_nascimento = filter_input(INPUT_POST, data_nascimento);
-
-$feriadostemp = filter_input(INPUT_POST, feriados);
-if ($feriadostemp == 1) {$feriados = 1;}
-else{$feriados = 0;}
-
+$ativo = 1; //Usuário é cadastrado ativo.
 
 
 //$nome = $_POST['nome'];
 
 //Inserir no Banco MySQL
-$query = "insert into Auditor (descricao, tipo_id, email, telefone, data_nascimento, feriados) values ('$nome', $tipo, '$email', '$telefone', '$data_nascimento', $feriados);";
+$query = "insert into Auditor (descricao, tipo_id, email, telefone, data_nascimento, ativo, Grupo_id) values ('$nome', $tipo, '$email', '$telefone', '$data_nascimento', $ativo, $grupo);";
 
 
 $insert = mysqli_query($connect, $query);

@@ -26,32 +26,32 @@
 
 
         <div class="container">
+            
             <div class="row">
-                <!-- Tela de Cadastro -->
-                <form method="post" action="cadastrando_agendamento_data.php">
-                    <div class="col-md-10 order-md-1">
-                        <h4 class="mb-3">Agendar Auditoria Manualmente</h4>
-
-                        <div class="col-md-3 mb-3">
-                            <p>Escolha uma data:</p>
-                            <input type='date' class='form-control' name='data' id='data' value=''>
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                            <p>Escolha o turno:</p>
-                            <select class='form-control' name='turno' id='turno'>
-                                <option value='1'>1</option>
-                                <option value='2'>2</option>
-                                <option value='3'>3</option>
+                <div class="col-md-10 order-md-1">
+                    <form method="post" action="cadastrando_agendamento_auditor_automatico.php">  
+                    <h4 class="mb-3">Agendar Auditoria Automaticamente</h4>
+                    
+                    <div class="col-md-3 mb-6">
+                    <p> Mês de agendamento</p>
+                            <select class='form-control' name='mes' id='mes'>
+                                <option value='01'>Janeiro</option>
+                                <option value='02'>Fevereiro</option>
+                                <option value='03'>Março</option>
+                                <option value='04'>Abril</option>
+                                <option value='05'>Maio</option>
+                                <option value='06'>Junho</option>
+                                <option value='07'>Julho</option>
+                                <option value='08'>Agosto</option>
+                                <option value='09'>Setembro</option>
+                                <option value='10'>Outubro</option>
+                                <option value='11'>Novembro</option>
+                                <option value='12'>Dezembro</option>
                             </select>
                         </div>
-
-
-
-                        <div class="col-md-4 mb-3">
-                            <p> Quantos auditores para esse turno?</p>
-                            <select class='form-control' name='numero' id='numero'>
-                                <option value='0'>0</option>
+                     <div class="col-md-3 mb-3">
+                            <p> Quantas lojas serão auditadas?</p>
+                            <select class='form-control' name='limit' id='limit'>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -60,17 +60,14 @@
                                 <option value='6'>6</option>
                             </select>
                         </div>
-
-                        <div class="col-md-1 mb-3">
-                            <p> <br></p>
-                        <button class="btn btn-primary" type="submit">Cadastrar</button>
-                        </div>
-
+                    <div class="col-md-6 mb-3">
+                         <p><br></p>
+                        <button class="btn btn-primary" type="submit">Calcular</button>
+                        (<a href="./apagatudo_agendamento.php">Apagar tudo</a>)*
                     </div>
-                    <hr class="mb-4">
-                </form>                
+                    </form>
+                </div>
             </div>
-            
             
             <div class="row">
                 <?php include './tabela.php'; //tabela ?>

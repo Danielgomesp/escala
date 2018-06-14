@@ -34,7 +34,7 @@ function MostreCalendario( $mes  )
 
 	$diasemana = jddayofweek( cal_to_jd(CAL_GREGORIAN, $mes,"01",date('Y')) , 0 );	// fun��o que descobre o dia da semana
 
-	echo "<table class='table table-striped table-condensed table-responsive table-hover table-bordered'>";
+	echo "<table class='table table-condensed table-responsive table-hover table-bordered'>";
 	
 	 echo "<tr class = 'linha_semanas'>";
 	   MostreSemanas();	// fun��o que mostra as semanas aqui
@@ -96,6 +96,7 @@ function MostreCalendario( $mes  )
                             if ($folga['total'] > 0){ //Se dia tiver folga, mostrar!
                             echo "  (<a href = ".$_SERVER["PHP_SELF"]."?dia=".($diacorrente)."><font color='red'>".$folga['total']."</font></a>)";    
                             }else{
+                            
                             }       
 			 }
 		      }
@@ -140,5 +141,30 @@ function MostreCalendarioCompleto()
 
 ?>
 
+<html>
+ <head>
+
+  <script src = "funcoes.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calendário</title>    
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <?php  /* include("info.php"); */ ?>
+
+ </head>
+              
+ <body>
+
+
+		<?php
+		  MostreCalendario(date('m'));
+                  
+		?>
+
+
+ </body>
+</html>
 
 

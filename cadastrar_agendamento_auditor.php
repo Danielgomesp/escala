@@ -62,7 +62,12 @@
                                     inner join Turno t
                                     on t.Auditor_id = a.id
                                     where dd.dia = (dayofweek('$exibe_id[datadia]')) and t.disponivel = $turno and
-                                    a.id not in (select Auditor_id from Folga where folga = '$exibe_id[datadia]');";
+                                    a.id not in (select Auditor_id from Folga where folga = '$exibe_id[datadia]') and a.ativo =1
+                                    and a.id not in (select aa.Auditor_id from Agenda_Auditor aa
+                                    inner join Auditor a on a.id = aa.Auditor_id
+                                    inner join Agenda ag on ag.id = aa.Agenda_id
+                                    where ag.data = '$exibe_id[datadia]');";
+                                    
                                     $select_auditor = mysqli_query($connect, $query_select_auditor) or die(msql_error());
                                     echo"  <select  class='form-control' name='auditor$i' id='auditor$i'>";
                                     echo"  <option value=''>Selecione $i</option> ";

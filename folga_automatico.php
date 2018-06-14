@@ -33,33 +33,46 @@
                 </div>
             </div>
 
-
-            <!-- Tela de Cadastro Individual-->
             <div class="row">
-                <form method="post" action="cadastrar_folga.php">  
-                    <div class="col-8">
-                        <h5>Cadastro Individual</h5>
-                        <?php
-                        include 'conn.php';
-                        $query_select_tipo = "select id, descricao from Auditor where ativo=1;";
-                        $select_tipo = mysqli_query($connect, $query_select_tipo) or die(msql_error());
-                        ?>
-                        <select class='custom-select w-100' name='nome' required>
-                            <option value=''>Escolha o Auditor</option> 
-                            <?php
-                            while ($row_tipo = mysqli_fetch_assoc($select_tipo)) {
-                                echo" <option value='$row_tipo[id]'>$row_tipo[descricao]</option> ";
-                            }
-                            ?>   
-                        </select>
-                        <button class="btn btn-xs" type="submit">Selecionar</button>
-                </form> 
-
-
+                <div class="col-8">
+                    <h5>Cadastro Audomático</h5>
+                    <form method="post" action="automatico_folga.php">  
+                    <select class='custom-select w-100' name='numero_folgas' required>
+                            <option value=''>Número de folgas</option> 
+                            <option value='2'>3 Folgas</option>
+                            <option value='3'>4 Folgas</option>
+                            <option value='4'>5 Folgas</option>
+                            <option value='5'>6 Folgas</option>
+                    </select>
+                    <select class='custom-select w-100' name='intervalo_incremento' required>
+                            <option value=''>Intervalo entre as folgas</option> 
+                            <option value='3'>3 Dias</option>
+                            <option value='4'>4 Dias</option>
+                            <option value='5'>5 Dias</option>
+                            <option value='6'>6 Dias</option>
+                    </select>   
+                    <select class='custom-select w-100' name='mes' required>
+                            <option value=''>Mês </option> 
+                            <option value='01'>Janeiro</option>
+                            <option value='02'>Fevereiro</option>
+                            <option value='03'>Março</option>
+                            <option value='04'>Abril</option>
+                            <option value='05'>Maio</option>
+                            <option value='06'>Junho</option>
+                            <option value='07'>Julho</option>
+                            <option value='08'>Agosto</option>
+                            <option value='09'>Setembro</option>
+                            <option value='10'>Outubro</option>
+                            <option value='11'>Novembro</option>
+                            <option value='12'>Dezembro</option>
+                    </select> 
+                    <button class="btn btn-xs btn-success" type="submit">Automatizar</button>
+                    (<a href="./apagatudo_folga.php">Apagar tudo</a>)*
+                     </form>
+                </div>
             </div>
-        </div>
 
-            <br><br>
+            <br>
         <!--Selecionar mês -->
         <div class="row">
             <div class="col-8">

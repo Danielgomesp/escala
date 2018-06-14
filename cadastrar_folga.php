@@ -47,13 +47,7 @@
                             Telefone: 
                             <?php echo $auditor['telefone']; ?>
                         </div>
-                        <div class="col">
-                            <form method="post" action="cadastrando_folga.php"> 
-                                <input type="hidden" name="id_auditor" value="<?php echo $auditor['id']; ?>">
-                                <input type="date" name="data">
-                                <button class="btn btn-primary" type="submit">Cadastrar</button> 
-                            </form>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -66,22 +60,31 @@
                         </thead>
                         <?php
                         include './conn.php';
-                        $qr_folga = "select date_format(folga, '%d/%m/%y') as data, dayname(folga) as dia_semana from Folga where Auditor_id =" . $auditor['id'] . " order by folga desc;";
+                        $qr_folga = "select date_format(folga, '%d/%m/%y') as data, dayname(folga) as dia_semana, folga from Folga where Auditor_id =" . $auditor['id'] . " order by folga desc;";
                         $select_folga = mysqli_query($connect, $qr_folga) or die(msql_error());
                         while ($folga = mysqli_fetch_assoc($select_folga)) {
                             echo "<tr><td>";
                             echo $folga['data'];
                             echo " - ";
                             echo $folga['dia_semana'];
-                            echo "<a href = cadastro.php?id=".$auditor['id'].">  (excluir)</a>";
+                            echo "<a href =excluir_folga.php?auditor=" . $auditor['id'] . "&folga=" . $folga['folga'] . ">  (excluir)</a>";
                             echo " </td></tr>";
-                            
                         }
                         ?>  
                     </table>
+                    <div class="col">
+                        <form method="post" action="cadastrando_folga.php"> 
+                            <input type="hidden" name="id_auditor" value="<?php echo $auditor['id']; ?>">
+                            <input type="date" name="data">
+                            <button class="btn btn-sm" type="submit">Cadastrar</button> 
+                        </form>
+                    </div>
                 </div>
+              
+                
                 <div class="col-sm-8">
-                    <?php include './calendario_por_data.php'; ?>
+                    <h4>Tabela Geral</h4>
+                    <?php include './calendario_por_data_mes_atual.php'; ?>
                 </div>  
             </div>
         </div>   
