@@ -69,6 +69,9 @@ and open the template in the editor.
                             <th class="col-lg-1">Folgas</th>
                             <th class="col-lg-1">Dias Trabalhados</th>
                             <th class="col-lg-1">Folga no Domingo</th>
+                            <th class="col-lg-1">Trabalha no Turno 1</th>
+                            <th class="col-lg-1">Trabalha no Turno 2</th>
+                            <th class="col-lg-1">Trabalha no Turno 3</th>
                         </tr>
                         <?php
                         //While para cada auditor
@@ -80,23 +83,38 @@ and open the template in the editor.
                             $qfolgas_colaborador = "select count(f.folga) as total from Auditor a inner join Folga f on f.Auditor_id = a.id where a.id = $exibe_auditores[id] and month(f.folga) = $mes;";
                             $qfolgas_domingo = "select count(f.folga) as total from Auditor a inner join Folga f on f.Auditor_id = a.id where a.id = $exibe_auditores[id] and month(f.folga) = $mes and dayofweek(f.folga) = 1;";
                             $qtrabalho_colaborador = "select count(aa.Agenda_id) as total from Auditor a inner join Agenda_Auditor aa on aa.Auditor_id = a.id inner join Agenda ag on ag.id = aa.Agenda_id where a.id = $exibe_auditores[id] and month(ag.data)= $mes;";
+                            $qr_conta_turno1 = "select count(*) as total from Auditor a inner join Agenda_Auditor aa on aa.Auditor_id = a.id inner join Agenda ag on ag.id = aa.Agenda_id where a.ativo =1 and a.id = $exibe_auditores[id] and ag.turno = 1;";
+                            $qr_conta_turno2 = "select count(*) as total from Auditor a inner join Agenda_Auditor aa on aa.Auditor_id = a.id inner join Agenda ag on ag.id = aa.Agenda_id where a.ativo =1 and a.id = $exibe_auditores[id] and ag.turno = 2;";
+                            $qr_conta_turno3 = "select count(*) as total from Auditor a inner join Agenda_Auditor aa on aa.Auditor_id = a.id inner join Agenda ag on ag.id = aa.Agenda_id where a.ativo =1 and a.id = $exibe_auditores[id] and ag.turno = 3;";
+                            
                             $sel_folga = mysqli_query($connect, $qfolgas_colaborador) or die(msql_error());
                             $sel_domingo = mysqli_query($connect, $qfolgas_domingo) or die(msql_error());
                             $sel_trabalho = mysqli_query($connect, $qtrabalho_colaborador) or die(msql_error());
+                            $sel_turno1 = mysqli_query($connect, $qr_conta_turno1) or die(msql_error());
+                            $sel_turno2 = mysqli_query($connect, $qr_conta_turno2) or die(msql_error());
+                            $sel_turno3 = mysqli_query($connect, $qr_conta_turno3) or die(msql_error());
+                           
                             $result_folga = mysqli_fetch_assoc($sel_folga);
                             $result_domingo = mysqli_fetch_assoc($sel_domingo);
                             $result_trabalho = mysqli_fetch_assoc($sel_trabalho);
+                            $total1 = mysqli_fetch_assoc($sel_turno1);
+                            $total2 = mysqli_fetch_assoc($sel_turno2);
+                            $total3 = mysqli_fetch_assoc($sel_turno3);
 
                             echo "<tr>";
                             echo "<td>" . $exibe_auditores[descricao] . "</td>";
                             echo "<td>" . $exibe_auditores[tipo] . "</td>";
                             echo "<td>" . $result_folga[total] . "</td>";
                             echo "<td>" . $result_trabalho[total] . "</td>";
-                            echo "<td>" . $result_domingo[total] ."</td>";
+                            if ($result_domingo[total] ==0){echo "<td><font style='color:red'>" . $result_domingo[total] ."</font></td>";}else{echo "<td>" . $result_domingo[total] ."</td>";}
+                            echo "<td>" . $total1[total] ."</td>";
+                            echo "<td>" . $total2[total] ."</td>";
+                            echo "<td>" . $total3[total] ."</td>";
                             echo "</tr>";
                         }
                         ?>
                     </table>
+                    
                 </div>
             </div>
         </div>

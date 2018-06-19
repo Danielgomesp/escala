@@ -27,37 +27,84 @@ and open the template in the editor.
         <div class="container">
             <div class="row">
                 <div class="col">                    
-                    Versão: Dev 1.0 <br>
+                    <b>  Versão: Dev 1.1 </b> 
+                    Lançamento 19/06/2018 <br>
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col">                    
+                    <br>Notas: <br> 
+
+                    Correção de BUGs: <br>
+                    <ul>
+                        <li>O select usado para cadastrar folgas automáticas agora só busca funcionários ativos.</li>
+                    </ul>
+                    
+                    Melhorias:  <br>
+                    <ul>
+                        <li>O algorítimo para cadastro de folga automático foi totalmente reconstruído. Basicamente ele faz a mesma coisa, porém agora todo o processo é feito em PHP. Antes, uma parte do processo era feita sm SQL, o que atrapalhava o seu desenvolvimento. </li>
+                    </ul>
+
+
+
+                    Para futuras versões: <br>
+                    <ul>
+                        <li>Editar informações de cada funcionário (Telefone, email, ativo)</li>
+                        <li>Adicionar relatórios</li>
+                        <li>Melhorar Script de agendamento: Menores Aprendizes não estão sendo escalados todos os dias.</li>
+                        <li>Opção de limpar agendamento e folgas selecionando o mês desejado. Atualmente ele limpa a tabela inteira.</li>
+                        <?php
+                        include './funcoes.php';
+                  
+                        ?>
+                    </ul>
+
+                </div>                    
+            </div>
+        </div>
+        
+        
+        
+        <br><br><br><br><br><br>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col">                    
+                    <b>  Versão: Dev 1.0 </b> 
                     Lançamento 14/06/2018 <br>
                 </div>                    
             </div>
             <div class="row">
                 <div class="col">                    
                     <br>Notas: <br> 
-                    
-                    <b>Alterações visuais: </b> <br>
+
+                    Alterações visuais:  <br>
                     <ul>
                         <li>Alterações na NAV (cabeçalho da página) que agora agrupa de maneira mais organizada e intuitiva os menus do sistema.</li>    
                         <li>Reorganizaçao nde elementos dentro das páginas: Cadastrar Agendamentos Manual e Automático, Folga Manual e Automático, Tabela de colaboradores ativos.</li>    
                     </ul>  
-                  
-                    <b>Correção de BUGs: </b> <br>
+
+                    Correção de BUGs:  <br>
                     <ul>
                         <li>Melhoria no script que cadastra folga automaticamente. Estava duplicando.</li>
                         <li>Melhoria no script que cadastra agendamentos automaticamente, Estava cadastrando a mesma pessoa para mais de um turno no mesmo dia.</li>
                         <li>Correção no script SQL que busca os funcionários. Agora só exibe funcionários ativos.</li>
                     </ul>
-                 
-                    
-                   
-                    <b>Para futuras versões:</b> <br>
+
+
+
+                    Para futuras versões: <br>
                     <ul>
                         <li>Editar informações de cada funcionário (Telefone, email, ativo)</li>
                         <li>Adicionar relatórios</li>
                         <li>Melhorar Script de agendamento: Menores Aprendizes não estão sendo escalados todos os dias.</li>
                         <li>Opção de limpar agendamento e folgas selecionando o mês desejado. Atualmente ele limpa a tabela inteira.</li>
-                    </ul>
+                        <?php
+                        include './funcoes.php';
                   
+                        ?>
+                    </ul>
+
                 </div>                    
             </div>
         </div>
