@@ -23,8 +23,48 @@ and open the template in the editor.
 
     <body>
         <?php include './header.php'; ?>
-        <br><br><br><br><br>
         <div class="container">
+            <br><br><br><br><br>
+
+
+            <div class="row">
+                <div class="col">                    
+                    <b>  Versão: Dev 1.2 </b> 
+                    Lançamento 21/06/2018 <br>
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col">                    
+                    <br>Notas: <br> 
+
+                    Correção de BUGs: <br>
+                    <ul>
+                        <li></li>
+                    </ul>
+
+                    Melhorias:  <br>
+                    <ul>
+                        <li>O algorítimo de cadastro de agendamento automático foi atualizado. Agora ele da prioridade aos Menores Aprendizes. Assim evita que eles recebam poucas escalas enquanto os auditores recebem muitas.</li>
+                        <li>Foi adicionado um relatório que exibe escala de folgas por dia.</li>
+                        <li>Novo relatório de Disponibilidade Semanal informa a disponibilidade de cada auditor durante os dias da semana conforme cadastrado.</li>
+                    </ul>
+
+
+
+                    Para futuras versões: <br>
+                    <ul>
+                        <li>Editar informações de cada funcionário (Telefone, email, ativo)</li>
+                        <li>Opção de limpar agendamento e folgas selecionando o mês desejado. Atualmente ele limpa a tabela inteira.</li>
+                       
+                    </ul>
+
+                </div>                    
+            </div>
+
+
+
+
+            <br><br><br><br><br><br>
             <div class="row">
                 <div class="col">                    
                     <b>  Versão: Dev 1.1 </b> 
@@ -39,10 +79,11 @@ and open the template in the editor.
                     <ul>
                         <li>O select usado para cadastrar folgas automáticas agora só busca funcionários ativos.</li>
                     </ul>
-                    
+
                     Melhorias:  <br>
                     <ul>
                         <li>O algorítimo para cadastro de folga automático foi totalmente reconstruído. Basicamente ele faz a mesma coisa, porém agora todo o processo é feito em PHP. Antes, uma parte do processo era feita sm SQL, o que atrapalhava o seu desenvolvimento. </li>
+                        <li>Relatório recebe a coluna: Turno1, Turno2 e Turno3 para registrar quantas vezes cada auditor trabalhou em cada turno. Isso facilitará a gestão.</li>
                     </ul>
 
 
@@ -51,23 +92,21 @@ and open the template in the editor.
                     <ul>
                         <li>Editar informações de cada funcionário (Telefone, email, ativo)</li>
                         <li>Adicionar relatórios</li>
-                        <li>Melhorar Script de agendamento: Menores Aprendizes não estão sendo escalados todos os dias.</li>
                         <li>Opção de limpar agendamento e folgas selecionando o mês desejado. Atualmente ele limpa a tabela inteira.</li>
                         <?php
                         include './funcoes.php';
-                  
                         ?>
                     </ul>
 
                 </div>                    
             </div>
-        </div>
-        
-        
-        
-        <br><br><br><br><br><br>
-        
-        <div class="container">
+
+
+
+
+            <br><br><br><br><br><br>
+
+
             <div class="row">
                 <div class="col">                    
                     <b>  Versão: Dev 1.0 </b> 
@@ -99,15 +138,11 @@ and open the template in the editor.
                         <li>Adicionar relatórios</li>
                         <li>Melhorar Script de agendamento: Menores Aprendizes não estão sendo escalados todos os dias.</li>
                         <li>Opção de limpar agendamento e folgas selecionando o mês desejado. Atualmente ele limpa a tabela inteira.</li>
-                        <?php
-                        include './funcoes.php';
-                  
-                        ?>
+
                     </ul>
 
                 </div>                    
             </div>
         </div>
-
     </body>    
 </html>
