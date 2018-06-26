@@ -20,10 +20,42 @@ and open the template in the editor.
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-
     <body>
+        
         <?php include './header.php'; ?>
         <div class="container">
+            <br><br><br><br><br>
+
+
+            <div class="row">
+                <div class="col">                    
+                    <b>  Versão: Dev 1.3 </b> 
+                    Lançamento 26/06/2018 <br>
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col">                    
+                    <br>Notas: <br> 
+
+                    Correção de BUGs: <br>
+                    <ul>
+                        <li>Correções em script SQL no cadastro automático de folgas para evitar bugs futuros.</li>
+                    </ul>
+
+                    Melhorias:  <br>
+                    <ul>
+                        <li>Melhoria no algorítimo de agendamento. Agora ele percorre duas vezes o calendário adicionando os funcionários extras como apoio.</li> 
+                        <li>Nas telas de cadastro de dias disponíveis por usuário, o checkbox  foi atualizado para aumentar a produtividade. Agora eles já vem selecionados.</li>
+                    </ul>
+
+
+
+                </div>                    
+            </div>
+            
+            
+            
+            
             <br><br><br><br><br>
 
 

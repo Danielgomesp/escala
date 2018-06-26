@@ -4,7 +4,7 @@ $agenda = $_GET['agenda'];
 $auditor = $_GET['auditor'];
 
 //Inserir no Banco MySQL
-$query ="DELETE FROM `Escala_Auditoria`.`Agenda_Auditor` WHERE `Agenda_id`='$agenda' and`Auditor_id`='$auditor';";
+$query ="DELETE FROM `Agenda_Auditor` WHERE `Agenda_id`='$agenda' and`Auditor_id`='$auditor';";
 $delete = mysqli_query($connect, $query);
 
 if ($delete) {

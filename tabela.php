@@ -19,6 +19,8 @@
                         echo "<td>1</td>";
                         echo "<td>2</td>";
                         echo "<td>3</td>";
+                        echo "<td>4</td>";
+                        echo "<td></td>";
                         echo "</tr>";
                             for($i = 1; $i <= 3; $i++){
                             echo "<tr>"; 

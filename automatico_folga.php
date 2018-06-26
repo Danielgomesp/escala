@@ -3,9 +3,10 @@
 include 'conn.php';
 $n = filter_input(INPUT_POST, numero_folgas); //número de loops folgas +1
 $intervalo_incremento = filter_input(INPUT_POST, intervalo_incremento); //intervalo de dias entre as folgas
-$mes_folga = filter_input(INPUT_POST, mes); //intervalo de dias entre as folgas
+$mes_folga = filter_input(INPUT_POST, mes); 
+$ano = '2018';
 
-$qr_id = "select id, Grupo_id as grupo from Auditor where tipo_id = 1 and ativo = 1;"; //Seleicona somente auditores (sem menor aprendiz)
+$qr_id = "select a.id, g.data as grupo from Auditor a inner join Grupo g on g.id = a.Grupo_id where tipo_id = 1 and ativo = 1;"; //Seleicona somente auditores (sem menor aprendiz)
 $select_id = mysqli_query($connect, $qr_id) or die(msql_error());
 while ($exibe = mysqli_fetch_assoc($select_id)) { //cada loop com um id de auditor diferente
     $id = $exibe[id]; //id do auditor
@@ -13,7 +14,7 @@ while ($exibe = mysqli_fetch_assoc($select_id)) { //cada loop com um id de audit
     $intervalo = 0; // Valor inicial deve ser sempre 0
 
     for ($i = 0; $i <= $n; $i++) { //Adiciona n folgas
-        $date = date_create("2018-$mes_folga-$grupo");
+        $date = date_create("$ano-$mes_folga-$grupo");
         date_add($date, date_interval_create_from_date_string("$intervalo days"));
         
         $condicao = date_format($date, 'w'); // recebe dia da semana (0 dom, 1 seg... 6 sab)

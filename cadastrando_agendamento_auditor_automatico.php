@@ -3,6 +3,7 @@
 include 'conn.php';
 
 $mes = filter_input(INPUT_POST, mes); //recebe mes para cadastrar agenda
+$ano = '2018';
 $limit = filter_input(INPUT_POST, limit); //recebe valor que vai no limit do sql  (quantas lojas serão auditadas)
 
 $qr_qtd_dias = "select  day(last_day('" . date('Y') . "-$mes-01')) as dias;";
@@ -10,9 +11,13 @@ $select_qtd_dias = mysqli_query($connect, $qr_qtd_dias) or die(msql_error());
 $exibe_qtd_dias = mysqli_fetch_assoc($select_qtd_dias);
 $qtd_dias = $exibe_qtd_dias['dias']; //Quantidade de dias no mês
 
-for ($dia = 1; $dia <= $qtd_dias + 1; $dia++) {  //loop para cada dia do mês
-    for ($turno = 1; $turno <= 3; $turno++) {  //loop para cada turno
-        $query_agenda = "insert into Agenda (turno, data) values ($turno, '" . date('Y') . "-$mes-$dia');";  
+//Cadastrar Agendamento
+for ($dia = 1; $dia <= $qtd_dias; $dia++) {  //loop para cada dia do mês
+    $date = date_create("$ano-$mes-$dia");
+    $data = date_format($date, "Y-m-d");
+    
+    for ($turno = 3; $turno >= 1; $turno--) {  //loop para cada turno
+        $query_agenda = "insert into Agenda (turno, data) values ($turno, '$data');";  
         mysqli_query($connect, $query_agenda); //insere as datas na tabela Agenda
 
         $qr_maxid = "select max(id) as id_agenda from Agenda;"; //seleciona última agenda recem criada
@@ -20,19 +25,20 @@ for ($dia = 1; $dia <= $qtd_dias + 1; $dia++) {  //loop para cada dia do mês
         $exibe_maxid = mysqli_fetch_assoc($select_maxid);
         $id_agenda = $exibe_maxid['id_agenda'];  //id da agenda
         
+        
         //Selecionar Auditores disponiveis
         $query_select_auditor = "select a.id, a.descricao from Auditor a
                                     inner join Dia_Semana_Disponivel dd
                                     on dd.Auditor_id = a.id
                                     inner join Turno t
                                     on t.Auditor_id = a.id
-                                    where dd.dia = (dayofweek('" . date('Y') . "-$mes-$dia')) and t.disponivel = $turno and
-                                    a.id not in (select Auditor_id from Folga where folga = '" . date('Y') . "-$mes-$dia') and a.ativo =1"
+                                    where dd.dia = (dayofweek('$data')) and t.disponivel = $turno and
+                                    a.id not in (select Auditor_id from Folga where folga = '$data') and a.ativo =1"
                 . "                 and
 				    a.id not in (select aa.Auditor_id from Agenda_Auditor aa
                                     inner join Auditor a on a.id = aa.Auditor_id
                                     inner join Agenda ag on ag.id = aa.Agenda_id
-                                    where ag.data = '" . date('Y') . "-$mes-$dia') "
+                                    where ag.data = '$data') "
                 . "                 ORDER BY a.tipo_id desc, RAND() limit $limit ;";
         
         $select_auditor = mysqli_query($connect, $query_select_auditor) or die(msql_error());
@@ -42,6 +48,33 @@ for ($dia = 1; $dia <= $qtd_dias + 1; $dia++) {  //loop para cada dia do mês
         }
     }
 }
+
+
+//Cadastrar Apoio
+for ($dia_apoio = 01; $dia_apoio <= $qtd_dias; $dia_apoio++) {  //loop para cada dia do mês - apoio
+    $date_apoio = date_create("$ano-$mes-$dia_apoio");
+    $data_apoio = date_format($date_apoio, "Y-m-d");
+    for ($turno_apoio = 1; $turno_apoio <= 3; $turno_apoio++) {  //loop para cada turno
+        
+        $qr_idagenda = "select ag.id from Agenda ag inner join Agenda_Auditor aa on aa.Agenda_id = ag.id
+where ag.turno = $turno_apoio and ag.data = '$data_apoio' limit 4;";
+        $select_idagenda = mysqli_query($connect, $qr_idagenda) or die(msql_error());
+        $idagenda = mysqli_fetch_assoc($select_idagenda);
+         
+       
+        //Selecionar Auditores disponiveis
+        $query_select_apoio = "select a.id from Auditor a inner join Turno t on t.Auditor_id = a.id inner join Dia_Semana_Disponivel dd on dd.Auditor_id = a.id
+where a.id not in (select Auditor_id from Folga where folga = '$data_apoio')
+and a.id not in (select Auditor_id from Agenda_Auditor aa inner join Agenda ag on ag.id = aa.Agenda_id where ag.data = '$data_apoio')
+and t.disponivel = $turno_apoio and a.ativo =1  and dd.dia = (dayofweek('$data_apoio')) limit 1;";
+        
+        $select_apoio = mysqli_query($connect, $query_select_apoio) or die(msql_error());
+        while ($row_apoio = mysqli_fetch_assoc($select_apoio)) {
+            $qr_insert_agendamento = "insert into Agenda_Auditor (Agenda_id, Auditor_id) values ($idagenda[id],$row_apoio[id]);";
+            mysqli_query($connect, $qr_insert_agendamento);
+        }
+    }
+}
 echo"<script language='javascript' type='text/javascript'>
 alert('Agendamento realizado!');
-window.location.href='cadastrar_agendamento_data.php'</script>";
+window.location.href='cadastrar_agendamento_data_automatico.php'</script>";

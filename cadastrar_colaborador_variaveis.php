@@ -71,33 +71,33 @@
                             <p class='text-muted'>Selecione os dias em que o <b> <?php echo $exibe[nome];?> </b> poderá trabalhar.</p>
 
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name='dia[]' value='2'>
-                                <label class="custom-control-label" for="same-address">Segunda-Feira</label>
+                                <input type="checkbox" class="custom-control-input" name='dia[]' value='2' checked>
+                                <label class="custom-control-label" for="same-address" selected>Segunda-Feira</label>
                             </div>
 
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name='dia[]' value='3'>
+                                <input type="checkbox" class="custom-control-input" name='dia[]' value='3' checked>
                                 <label class="custom-control-label" for="same-address">Terça-Feira</label>
                             </div>
 
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name='dia[]' value='4'>
+                                <input type="checkbox" class="custom-control-input" name='dia[]' value='4' checked>
                                 <label class="custom-control-label" for="same-address">Quarta-Feira</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name='dia[]' value='5'>
+                                <input type="checkbox" class="custom-control-input" name='dia[]' value='5' checked>
                                 <label class="custom-control-label" for="same-address">Quinta-Feira</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name='dia[]' value='6'>
+                                <input type="checkbox" class="custom-control-input" name='dia[]' value='6' checked>
                                 <label class="custom-control-label" for="same-address">Sexta-Feira</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name='dia[]' value='7'>
+                                <input type="checkbox" class="custom-control-input" name='dia[]' value='7' checked>
                                 <label class="custom-control-label" for="same-address">Sábado</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name='dia[]' value='1'>
+                                <input type="checkbox" class="custom-control-input" name='dia[]' value='1' checked>
                                 <label class="custom-control-label" for="same-address">Domingo</label>
                             </div>
                             <hr class="mb-4">

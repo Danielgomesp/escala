@@ -76,15 +76,15 @@
                     <p class='text-muted'>Selecione os turnos em que o <b> <?php echo $exibe[nome]; ?> </b> poderá trabalhar.</p>
 
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name='turno[]' value='1'>
+                        <input type="checkbox" class="custom-control-input" name='turno[]' value='1' checked>
                         <label class="custom-control-label" for="same-address">Turno 1</label>
                     </div>
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name='turno[]' value='2'>
+                        <input type="checkbox" class="custom-control-input" name='turno[]' value='2' checked>
                         <label class="custom-control-label" for="same-address">Turno 2</label>
                     </div>
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name='turno[]' value='3'>
+                        <input type="checkbox" class="custom-control-input" name='turno[]' value='3' checked>
                         <label class="custom-control-label" for="same-address">Turno 3</label>
                     </div>  
                     <hr class="mb-4">
