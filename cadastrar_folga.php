@@ -83,8 +83,11 @@
               
                 
                 <div class="col-sm-8">
-                    <h4>Tabela Geral</h4>
-                    <?php include './calendario_por_data_mes_atual.php'; ?>
+                    <h4>Tabela Folga</h4>
+                    <?php include './calendario_por_usuario.php'; 
+                    MostreCalendario('06', $auditor['id']) // mês e id
+                    ?>
+                    
                 </div>  
             </div>
         </div>   

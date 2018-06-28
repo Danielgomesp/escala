@@ -25,6 +25,31 @@ and open the template in the editor.
         <?php include './header.php'; ?>
         <div class="container">
             <br><br><br><br><br>
+            <div class="row">
+                <div class="col">                    
+                    <b>  Versão: Dev 1.4 </b> 
+                    Lançamento 28/06/2018 <br>
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col">                    
+                    <br>Notas: <br> 
+
+                    Melhorias:  <br>
+                    <ul>
+                        <li>Na página cadastrar_folga, a tabela exibe os dias trabalhados e os dias de folga para o usuário selecionado.</li>
+                        <li>Foi criado a classe "calendário por usuário" que facilitou a manutenção do calendário que é exibido no cadastro de folga e no relatório de usuário.</li>
+                        <li>Foi criado o Relatório de agendamento que servirá para impressão e consulta.</li>
+                        <li>Atualização no algoritimo de agendamento. Agora os estagiários estão disponíveis em todos os turnos durante o fim de semana.</li>
+                    </ul>
+
+
+
+                </div>                    
+            </div>
+            
+            
+            <br><br><br><br><br>
 
 
             <div class="row">

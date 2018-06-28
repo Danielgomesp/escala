@@ -49,6 +49,7 @@
                             <li><a href="./relatorio.php">Agendamento e Folgas por Auditor</a></li>
                             <li><a href="./relatorio_folga.php">Folgas por dia</a></li>
                             <li><a href="./disponibilidade_semanal.php">Disponibilidade Semanal</a></li>
+                            <li><a href="./relatorio_agenda.php">Agendamento</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="./sobre.php">Sobre</a></li>
                         </ul>

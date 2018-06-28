@@ -22,13 +22,19 @@ and open the template in the editor.
     </head>
     
     <body>
-        <br><br><br><br><br>
         <?php
             include './header.php';  //Cabeçalho
-//          $today = date("Y-m-d");
-            $today = date("d");
-            
         ?>
+        <br><br><br><br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>
+                      
+                </div>
+            </div>
+        </div>
+        
         
     </body>    
 </html>
