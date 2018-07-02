@@ -24,6 +24,27 @@ and open the template in the editor.
         
         <?php include './header.php'; ?>
         <div class="container">
+             <br><br><br><br><br>
+            <div class="row">
+                <div class="col">                    
+                    <b>  Versão: Dev 1.5 </b> 
+                    Lançamento 02/07/2018 <br>
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col">                    
+                    <br>Notas: <br> 
+
+                    Melhorias:  <br>
+                    <ul>
+                        <li>A página "Colaborador" foi remodelada para ser possível alterar as informações do colaborador. É possível alterar nome, e-mail, telefone e o status ativo.</li>
+                      </ul>
+
+
+
+                </div>                    
+            </div>
+            
             <br><br><br><br><br>
             <div class="row">
                 <div class="col">                    

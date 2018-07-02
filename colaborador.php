@@ -27,7 +27,9 @@
         $id = $_GET[id]; //Recebe id do colaborador
        
         include 'conn.php';
-        $qr = "select id, descricao, email, telefone, TIMESTAMPDIFF(YEAR,data_nascimento,CURDATE()) AS idade from Auditor where id = $id;";
+        $qr = "select a.id, a.ativo, a.descricao, a.email, a.telefone, TIMESTAMPDIFF(YEAR,a.data_nascimento,CURDATE()) AS idade from Auditor a
+inner join Grupo g on g.id = a.Grupo_id
+where a.id =$id;";
         $select = mysqli_query($connect, $qr) or die(msql_error());
         $exibe = mysqli_fetch_assoc($select);
         
@@ -40,22 +42,50 @@
                 <div class="col-md-10 order-md-1">
                     <h4 class="mb-3">Informações Detalhadas</h4>
 
-                    <div class="col-md-3 mb-3">
-                        <p>
-                            <b><?php echo $exibe['descricao']; ?></b><br>
-                            <?php echo $exibe['email']; ?><br>
-                            <?php echo $exibe['telefone']; ?><br>
-                            <?php echo $exibe['idade']; ?> anos<br>
-                        </p>
+                    <div class="col-md-12 mb-12">
+                        <form method="post" action="atualizando_colaborador.php">
+                            
+                            <input type="hidden" name="id" id="id" value="<?php echo $id;?>">
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control" name="nome" id="nome" value="<?php echo $exibe['descricao']; ?>" required>
+                            </div>
+                            
+                            <div class="col-md-3 mb-3">
+                                <label for="email">E-mail</label>
+                                <input type="text" class="form-control" name="email" id="email" value="<?php echo $exibe['email']; ?>" required>
+                            </div>
+                            
+                            <div class="col-md-2 mb-3">
+                                <label for="telefone">Telefone</label>
+                                <input type="text" class="form-control" name="telefone" id="telefone" value="<?php echo $exibe['telefone']; ?>" required>
+                            </div>
+                            
+                            <div class="col-md-2 mb-3">
+                                <label for="idade">Idade</label>
+                                <input type="text" class="form-control" name="idade" id="idade" value="<?php echo $exibe['idade']; ?>" disabled="disabled">
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <label for="idade">Ativo</label>
+                                <input type="checkbox" class="form" name="ativo" id="ativo" value="1" <?php if($exibe[ativo] == 1){echo "checked";}; ?> > 
+                           </div>
+                            
+                            
+                            <div class="col-md-1 mb-3">
+                                <label for="atualizar"> </label>
+                            <button class="btn btn-primary" type="submit">Atualizar</button>
+                            </div>
+                        </form>
                     </div>
 
 
                 </div>
-                <hr class="mb-4">
+                
             </div>
             <br>
             <div class="row">
-                <div class="col-md-10 order-md-1">
+                <div class="col-md-10 order-md-10">
                     <h4 class="mb-3">Calendário de Folga</h4>
                     <form method="post" action=""> 
                             <div class="col-8">
