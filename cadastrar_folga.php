@@ -33,7 +33,13 @@
 
                 <div class="col-sm-12">
                     <?php
-                    $id = $_POST[nome]; //recebe id do colaborador
+                    $id = $_GET['id']; //Recebe id do colaborador via GET  (isso acontece quando o usuário está na página de cadastro de folga.)
+                    if(empty($id)){
+                    $id = $_POST['nome']; //recebe id do colaborador via POST (isso acontece ao acessar pela primeira vez.)
+                    }
+                        
+                    
+                    
                     $query_select_auditor = "select a.id, a.descricao as nome, a.telefone, t.descricao as contrato from Auditor a inner join Tipo t on t.id = a.tipo_id where a.id = $id;";
                     $select_auditor = mysqli_query($connect, $query_select_auditor) or die(msql_error());
                     $auditor = mysqli_fetch_assoc($select_auditor);
@@ -85,7 +91,8 @@
                 <div class="col-sm-8">
                     <h4>Tabela Folga</h4>
                     <?php include './calendario_por_usuario.php'; 
-                    MostreCalendario('06', $auditor['id']) // mês e id
+                    $mes_calendario = date(m);
+                    MostreCalendario($mes_calendario, $auditor['id']) // mês e id
                     ?>
                     
                 </div>  

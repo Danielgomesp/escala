@@ -24,9 +24,39 @@ and open the template in the editor.
         
         <?php include './header.php'; ?>
         <div class="container">
-             <br><br><br><br><br>
+              <br><br><br><br><br>
+            <div class="row">
+                <div class="col">                
+                    <b>  Versão: Dev 1.6 </b> 
+                    Lançamento 06/08/2018 <br>
+                </div>                    
+            </div>
             <div class="row">
                 <div class="col">                    
+                    <br>Notas: <br> 
+
+                    Alterações:  <br>
+                    <ul>
+                        <li>Devido à solicitação da auditoria, domingo só terá dois turnos.</li>
+                    </ul>
+                    
+                    Melhorias:  <br>
+                    <ul>
+                        <li>A página de cadastro manual de folga agora mantém as últimas informações de usuário para agilizar a utilização do sistema</li>
+                        <li>O script de agendamento automático foi modificado: Agora ele insere um usuário por vez em cada turno e repete esse procedimento até completar o número mínimo de auditores solicitados. Dessa forma o sistema evita de ocupar mais um turno em detrimento do outro.</li>
+                    </ul>
+                    Correções:  <br>
+                    <ul>
+                        <li>A tabela de folga foi corrigida.</li>
+                    </ul>
+
+
+
+                </div>                    
+            </div>
+             <br><br><br><br><br>
+            <div class="row">
+                <div class="col">                
                     <b>  Versão: Dev 1.5 </b> 
                     Lançamento 02/07/2018 <br>
                 </div>                    
