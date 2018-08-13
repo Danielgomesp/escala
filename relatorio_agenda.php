@@ -59,6 +59,8 @@ and open the template in the editor.
                     <?php
                     include './conn.php';
                     $mes = $_POST[mes];
+                    echo "<a href='pdf.php?mes=$mes'>Gerar PDF</a>";
+                    
                     $query_agenda = "select dayname(data) as dia_da_semana, date_format(data, '%d/%m/%y') as datam, data from Agenda where month(data) = $mes group by data order by data limit 31;";
                     $select_agenda = mysqli_query($connect, $query_agenda) or die(msql_error());                    
                     while ($row_agenda = mysqli_fetch_assoc($select_agenda)){

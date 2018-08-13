@@ -19,12 +19,14 @@
 
                         <?php
                         include './conn.php';
-                        $qr_user = "select Grupo_id as grupo, a.id, a.ativo, a.descricao as Nome,
+                        $qr_user = "select g.descricao as grupo, a.id, a.ativo, a.descricao as Nome,
                         TIMESTAMPDIFF(YEAR,a.data_nascimento,CURDATE()) AS Idade,
                         t.descricao as cargo
                         from Auditor a
                         inner join Tipo t
                         on t.id = a.tipo_id
+                        inner join Grupo g
+                        on g.id = a.Grupo_id
                         where a.ativo =1;";
                         
                         $select = mysqli_query($connect, $qr_user) or die (msql_error());

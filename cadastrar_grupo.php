@@ -27,42 +27,17 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-4 order-md-2 mb-4">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Grupos de Funcionários</span>
-                        <span class="badge badge-secondary badge-pill"><!--número de colaboradores cadastrados -->
-                            <?php
-                            include 'conn.php';
-                            $qr_count = "select count(*) as total from Grupo;";
-                            $select_count = mysqli_query($connect, $qr_count) or die(msql_error());
-                            $exibe_count = mysqli_fetch_assoc($select_count);
-                            echo $exibe_count[total];
-                            ?>
-                        </span>                
-                    </h4>
-                    <ul class="list-group mb-3">
-
-                        <?php
-                        include './conn.php';
-                        $qr_user = "select * from Grupo";
-                        $select = mysqli_query($connect, $qr_user) or die(msql_error());
-                        while ($exibe = mysqli_fetch_assoc($select)) {
-                            echo "<li class='list-group-item d-flex justify-content-between lh-condensed'>";
-                            echo "<div>";
-                            echo "<h6 class=1my-01><b>$exibe[descricao]</b></h6>";
-                            echo "</div>";
-                            echo "</li>";
-                        }
-                        ?>
-                    </ul>
-
-
+                <div class="col-md-6">
+                    <?php
+                    include './conn.php';
+                    include './tabela_lateral_grupos.php';
+                    ?>
                 </div>
 
 
                 <!-- Tela de Cadastro -->
                 <form method="post" action="cadastrando_grupo.php">
-                    <div class="col-md-8 order-md-1">
+                    <div class="col-md-6 order-md-1">
                         <h4 class="mb-3">Cadastro de Grupo</h4>
 
                         <div class="row">

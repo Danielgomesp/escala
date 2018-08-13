@@ -21,10 +21,28 @@ and open the template in the editor.
         <![endif]-->
     </head>
     <body>
-        
+
         <?php include './header.php'; ?>
         <div class="container">
-              <br><br><br><br><br>
+            <br><br><br><br><br>
+            <div class="row">
+                <div class="col">                
+                    <b>  Versão: Dev 1.7 </b> 
+                    Lançamento 13/08/2018 <br>
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col">                    
+                    <br>Notas: <br> 
+
+                    Melhorias:  <br>
+                    <ul>
+                        <li>Incluído a possibilidade de alterar o grupo do auditor nas configurações do usuário.</li>
+                        <li>O sistema agora gera PDF da escala geral do mês.</li>
+                    </ul>
+                </div>                    
+            </div>
+            <br><br><br><br><br>
             <div class="row">
                 <div class="col">                
                     <b>  Versão: Dev 1.6 </b> 
@@ -39,7 +57,7 @@ and open the template in the editor.
                     <ul>
                         <li>Devido à solicitação da auditoria, domingo só terá dois turnos.</li>
                     </ul>
-                    
+
                     Melhorias:  <br>
                     <ul>
                         <li>A página de cadastro manual de folga agora mantém as últimas informações de usuário para agilizar a utilização do sistema</li>
@@ -54,7 +72,7 @@ and open the template in the editor.
 
                 </div>                    
             </div>
-             <br><br><br><br><br>
+            <br><br><br><br><br>
             <div class="row">
                 <div class="col">                
                     <b>  Versão: Dev 1.5 </b> 
@@ -68,13 +86,13 @@ and open the template in the editor.
                     Melhorias:  <br>
                     <ul>
                         <li>A página "Colaborador" foi remodelada para ser possível alterar as informações do colaborador. É possível alterar nome, e-mail, telefone e o status ativo.</li>
-                      </ul>
+                    </ul>
 
 
 
                 </div>                    
             </div>
-            
+
             <br><br><br><br><br>
             <div class="row">
                 <div class="col">                    
@@ -98,8 +116,8 @@ and open the template in the editor.
 
                 </div>                    
             </div>
-            
-            
+
+
             <br><br><br><br><br>
 
 
@@ -128,10 +146,10 @@ and open the template in the editor.
 
                 </div>                    
             </div>
-            
-            
-            
-            
+
+
+
+
             <br><br><br><br><br>
 
 
@@ -163,7 +181,7 @@ and open the template in the editor.
                     <ul>
                         <li>Editar informações de cada funcionário (Telefone, email, ativo)</li>
                         <li>Opção de limpar agendamento e folgas selecionando o mês desejado. Atualmente ele limpa a tabela inteira.</li>
-                       
+
                     </ul>
 
                 </div>                    

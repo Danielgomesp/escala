@@ -27,7 +27,7 @@
         $id = $_GET[id]; //Recebe id do colaborador
        
         include 'conn.php';
-        $qr = "select a.id, a.ativo, a.descricao, a.email, a.telefone, TIMESTAMPDIFF(YEAR,a.data_nascimento,CURDATE()) AS idade from Auditor a
+        $qr = "select g.descricao as grupo, a.id, a.ativo, a.descricao, a.email, a.telefone, TIMESTAMPDIFF(YEAR,a.data_nascimento,CURDATE()) AS idade from Auditor a
 inner join Grupo g on g.id = a.Grupo_id
 where a.id =$id;";
         $select = mysqli_query($connect, $qr) or die(msql_error());
@@ -66,6 +66,11 @@ where a.id =$id;";
                                 <label for="idade">Idade</label>
                                 <input type="text" class="form-control" name="idade" id="idade" value="<?php echo $exibe['idade']; ?>" disabled="disabled">
                             </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="idade">Grupo</label>
+                                 <?php include './select_grupo.php';?> 
+                            </div>
+                            
                             <div class="col-md-1 mb-3">
                                 <label for="idade">Ativo</label>
                                 <input type="checkbox" class="form" name="ativo" id="ativo" value="1" <?php if($exibe[ativo] == 1){echo "checked";}; ?> > 
